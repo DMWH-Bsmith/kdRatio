@@ -6,6 +6,7 @@ const killsLeftEl = document.querySelector('.killsLeft');
 const inputRowEl = document.querySelector('.inputRow');
 const gameArchiveEl = document.querySelector('.gameArchive');
 const achievedSetEl = document.querySelector('.achievedSet');
+const setTotalsEl = document.querySelector('.totals');
 //////////////////////////////////////////////////////////// 
 // BUTTONS //////////////////////////////////////////////// 
 const startBtn = document.querySelector('.startBtn');
@@ -50,6 +51,11 @@ deathInput.classList.add('deathInput');
 //////////////////////////////////////////////////////////
 
 
+// ARCHIEVED SET ELEMENTS /////////////////////////////////
+
+//////////////////////////////////////////////////////////
+
+
 
 for (let i = 0; i <= mapArray.length -1; i++) { 
     const option = document.createElement('option'); 
@@ -64,7 +70,6 @@ inputRowEl.appendChild(deathInput);
 firstEl.appendChild(mapDropdown);
 firstEl.appendChild(inputRowEl);
 firstEl.appendChild(subSingleScoreBtn);
-firstEl.appendChild(gameArchiveEl);
 
 killInput.addEventListener('input', () => {
     if (killInput.value.length > 1) {
@@ -82,27 +87,55 @@ deathInput.addEventListener('input', () => {
     if (deathInput.value.length > 1) {
         killsLeft -= killInput.value;
         killsLeftEl.textContent = killsLeft;
+        console.log(mapDropdown.value);
         singleGameArray.push({ 
         kills: killInput.value, 
-        deaths: deathInput.value
-    });
-    if (killsLeft <= 0) {
-        firstEl.classList.add('hide');
-        secondEl.classList.remove('hide');
-        let totalKills = killsLeft * -1 + 100;
-        let totalDeaths 
-        totalSetArray.push({ 
-            totalKills: totalKills,
-            totalDeaths: deathInput.value,
-            games: {singleGameArray}
-        })
-        console.log(totalSetArray.games.length);
-        console.log(totalSetArray);
-    } else {
-        killInput.value = '';
-        deathInput.value = '';
-        killInput.focus();
-    }
+        deaths: deathInput.value,
+        map: mapDropdown.value
+        });
+
+        if (killsLeft <= 0) {
+            firstEl.classList.add('hide');
+            secondEl.classList.remove('hide');
+            let totalKills = killsLeft * -1 + 100;
+            console.log(totalSetArray);
+            let totalDeaths = 0;
+
+            for (let i = 0; i < totalSetArray.games; i++) {
+                let games = totalSetArray.games[i];
+                console.log(games);
+                
+            
+            }
+            // let totalDeaths = 
+
+            // let totalDeaths = 
+            totalSetArray.push({ 
+                totalKills: totalKills,
+                totalDeaths: deathInput.value,
+                games: {singleGameArray}
+            })
+            for ( let i = 0; i < totalSetArray[0].games.singleGameArray.length; i++){
+                let div = document.createElement('div');
+                div.classList.add('archiveDiv');
+                let val = totalSetArray[0].games.singleGameArray[i];
+                let ratio = (val.kills/val.deaths);
+                let totalRatio = (totalSetArray[0].totalKills/totalSetArray[0].totalDeaths).toFixed(2);
+
+                console.log(val);
+                div.textContent = `${val.kills}   |||   ${val.deaths}  || ${ratio.toFixed(2)}%  ||  ${val.map}`;
+                
+
+                secondEl.appendChild(div);
+                setTotalsEl.textContent = `K: ${totalSetArray[0].totalKills} D: ${totalSetArray[0].totalDeaths} R: ${totalRatio}`;
+            };
+
+        } else {
+
+            killInput.value = '';
+            deathInput.value = '';
+            killInput.focus();
+        }
     
     }
 })
@@ -113,11 +146,13 @@ deathInput.addEventListener('keydown', (e) => {
             killsLeftEl.textContent = killsLeft;
             singleGameArray.push({ 
                 kills: killInput.value, 
-                deaths: deathInput.value
+                deaths: deathInput.value,
+                map: mapDropdown.value
             })
             if (killsLeft <= 0) {
                 firstEl.classList.add('hide');
                 secondEl.classList.remove('hide');
+                console.log(totalSetArray);
             } else {
                 killInput.value = '';
                 deathInput.value = '';
@@ -132,7 +167,9 @@ deathInput.addEventListener('keydown', (e) => {
         killsLeftEl.textContent = killsLeft;
         singleGameArray.push({ 
             kills: killInput.value, 
-            deaths: deathInput.value
+            deaths: deathInput.value,
+            map: mapDropdown.value
+
         });
         killInput.value = '';
         deathInput.value = '';
@@ -140,7 +177,6 @@ deathInput.addEventListener('keydown', (e) => {
 })
 
 
-console.log(singleGameArray);
 
 
 

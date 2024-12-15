@@ -7,6 +7,10 @@ const inputRowEl = document.querySelector('.inputRow');
 const gameArchiveEl = document.querySelector('.gameArchive');
 const achievedSetEl = document.querySelector('.achievedSet');
 const setTotalsEl = document.querySelector('.totals');
+const inGameTotalsEl = document.querySelector('.inGameTotals');
+const currKillTotal = document.querySelector('.currKillTotal');
+const currdeathTotal = document.querySelector('.currKillTotal');
+const currRatioTotal = document.querySelector('.currKillTotal');
 //////////////////////////////////////////////////////////// 
 // BUTTONS //////////////////////////////////////////////// 
 const startBtn = document.querySelector('.startBtn');
@@ -17,6 +21,7 @@ subSingleScoreBtn.classList.add('.subSingleScoreBtn');
 //////////////////////////////////////////////////////////// 
 // VALUES /////////////////////////////////////////////////
 let killsLeft = 100;
+let totalDeaths = 0;
 ///////////////////////////////////////////////////////////
 // ARRAYS ////////////////////////////////////////////////
 mapArray = ['Babylon', 'Derelict', 'Gala', 'Lowtown', 
@@ -39,6 +44,7 @@ killsLeftEl.textContent = killsLeft;
 
 
 let mapDropdown = document.createElement('select');
+
 
 
 // INPUT ROW ELEMENTS ---> .inputRowEl ///////////////////
@@ -70,6 +76,7 @@ inputRowEl.appendChild(deathInput);
 firstEl.appendChild(mapDropdown);
 firstEl.appendChild(inputRowEl);
 firstEl.appendChild(subSingleScoreBtn);
+firstEl.appendChild(gameArchiveEl);
 
 killInput.addEventListener('input', () => {
     if (killInput.value.length > 1) {
@@ -86,6 +93,9 @@ killInput.addEventListener('keydown', (e) => {
 deathInput.addEventListener('input', () => {
     if (deathInput.value.length > 1) {
         killsLeft -= killInput.value;
+        totalDeaths += parseInt(deathInput.value, 10);
+        console.log(totalDeaths);
+
         killsLeftEl.textContent = killsLeft;
         console.log(mapDropdown.value);
         singleGameArray.push({ 
@@ -99,39 +109,79 @@ deathInput.addEventListener('input', () => {
             secondEl.classList.remove('hide');
             let totalKills = killsLeft * -1 + 100;
             console.log(totalSetArray);
-            let totalDeaths = 0;
-
+            console.log(totalDeaths);
             for (let i = 0; i < totalSetArray.games; i++) {
                 let games = totalSetArray.games[i];
                 console.log(games);
                 
             
             }
-            // let totalDeaths = 
-
-            // let totalDeaths = 
             totalSetArray.push({ 
                 totalKills: totalKills,
-                totalDeaths: deathInput.value,
+                totalDeaths: totalDeaths,
                 games: {singleGameArray}
             })
             for ( let i = 0; i < totalSetArray[0].games.singleGameArray.length; i++){
                 let div = document.createElement('div');
                 div.classList.add('archiveDiv');
                 let val = totalSetArray[0].games.singleGameArray[i];
-                let ratio = (val.kills/val.deaths);
-                let totalRatio = (totalSetArray[0].totalKills/totalSetArray[0].totalDeaths).toFixed(2);
-
                 console.log(val);
-                div.textContent = `${val.kills}   |||   ${val.deaths}  || ${ratio.toFixed(2)}%  ||  ${val.map}`;
+                let totalRatio = (totalSetArray[0].totalKills/totalSetArray[0].totalDeaths).toFixed(2);
+                let gameNumber = document.createElement('div');
+                let killDiv = document.createElement('div');
+                let deathDiv = document.createElement('div');
+                let ratioDiv = document.createElement('div');
+                let mapDiv = document.createElement('div');
+
+                gameNumber.textContent = `${i + 1}.`;
+                killDiv.textContent = val.kills;
+                deathDiv.textContent = val.deaths;
+                ratioDiv.textContent = (val.kills/val.deaths).toFixed(2);
+                mapDiv.textContent = val.map;
+
                 
 
+
+
+
+
+
+                div.appendChild(gameNumber);
+                div.appendChild(killDiv);
+                div.appendChild(deathDiv);
+                div.appendChild(ratioDiv);
+                div.appendChild(mapDiv);
+
+                if ((val.kills/val.deaths) < 1){
+                    div.classList.add('red');
+                };
+
+                if ((val.kills/val.deaths) > 1){
+                    div.classList.add('green');
+                };
+
+                if ((val.kills/val.deaths) === 1){
+                    div.classList.add('grey');
+                };
+                
+
+
+                let totalKillDiv = document.createElement('div');
+                let totalDeathDiv = document.createElement('div');
+                let totalRatioDiv = document.createElement('div');
+
+                totalKillDiv.textContent = 'K: ' + totalSetArray[0].totalKills;
+                totalDeathDiv.textContent = 'D: ' + totalSetArray[0].totalDeaths;
+                totalRatioDiv.textContent = '%: ' + totalRatio;
+        
+                setTotalsEl.appendChild(totalKillDiv);
+                setTotalsEl.appendChild(totalDeathDiv);
+                setTotalsEl.appendChild(totalRatioDiv);
+
                 secondEl.appendChild(div);
-                setTotalsEl.textContent = `K: ${totalSetArray[0].totalKills} D: ${totalSetArray[0].totalDeaths} R: ${totalRatio}`;
+                secondEl.appendChild(setTotalsEl);
             };
-
-        } else {
-
+        } else {         
             killInput.value = '';
             deathInput.value = '';
             killInput.focus();

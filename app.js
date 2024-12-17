@@ -21,13 +21,14 @@ subSingleScoreBtn.classList.add('.subSingleScoreBtn');
 //////////////////////////////////////////////////////////// 
 // VALUES /////////////////////////////////////////////////
 let killsLeft = 100;
+let totalKills = 0;
 let totalDeaths = 0;
 ///////////////////////////////////////////////////////////
 // ARRAYS ////////////////////////////////////////////////
-mapArray = ['Babylon', 'Derelict', 'Gala', 'Lowtown', 
-    'Payback', 'Pit', 'Protocol', 'Red card', 'Rewind', 
-    'Scud', 'Skyline', 'Stakeout', 'Subsonic', 'Vault', 
-    'Vorkuta', 'Warehead'];
+mapArray = [' Babylon', 'Derelict', '  Gala  ', ' Lowtown', 
+    ' Payback', '   Pit  ', 'Protocol', 'Red card', '  Rewind', 
+    '  Scud  ', 'Skyline ', 'Stakeout', 'Subsonic', ' Vault  ', 
+    'Vorkuta ', 'Warehead'];
 
 singleGameArray = [];
 totalSetArray = [];
@@ -49,10 +50,12 @@ let mapDropdown = document.createElement('select');
 
 // INPUT ROW ELEMENTS ---> .inputRowEl ///////////////////
 let killInput = document.createElement('input');
+killInput.type = 'number';
 killInput.classList.add('killInput');
 let hyph = document.createElement('h3');
 hyph.textContent = ' - ';
 let deathInput = document.createElement('input');
+deathInput.type = 'number';
 deathInput.classList.add('deathInput');
 //////////////////////////////////////////////////////////
 
@@ -90,43 +93,32 @@ killInput.addEventListener('keydown', (e) => {
     }
 })
 
+
 deathInput.addEventListener('input', () => {
     if (deathInput.value.length > 1) {
         killsLeft -= killInput.value;
         totalDeaths += parseInt(deathInput.value, 10);
-        currKillTotal.textContent = 'K: ' + killsLeft * -1 + 100;
-        currdeathTotal.textContent = 'D: ' + totalDeaths;
-        currRatioTotal.textContent = 'R: ' + ((killsLeft * -1 + 100)/totalDeaths).toFixed(2);
-
-        inGameTotalsEl.appendChild(currKillTotal);
-        inGameTotalsEl.appendChild(currdeathTotal);
-        inGameTotalsEl.appendChild(currRatioTotal);
-
-        console.log(totalDeaths);
-
-        killsLeftEl.textContent = killsLeft;
-        console.log(mapDropdown.value);
+        totalKills += parseInt(killInput.value, 10);
         singleGameArray.push({ 
-        kills: killInput.value, 
-        deaths: deathInput.value,
-        map: mapDropdown.value
-        });
+            kills: killInput.value, 
+            deaths: deathInput.value,
+            map: mapDropdown.value
+        });  
 
         if (killsLeft <= 0) {
             firstEl.classList.add('hide');
             secondEl.classList.remove('hide');
-            let totalKills = killsLeft * -1 + 100;
-            console.log(totalSetArray);
-            console.log(totalDeaths);
-            // for (let i = 0; i < totalSetArray.games; i++) {
-            //     let games = totalSetArray.games[i];
-            //     console.log(games);
-            // }
+            
             totalSetArray.push({ 
                 totalKills: totalKills,
                 totalDeaths: totalDeaths,
                 games: {singleGameArray}
-            })
+            })  
+
+
+
+
+
             for ( let i = 0; i < totalSetArray[0].games.singleGameArray.length; i++){
                 let div = document.createElement('div');
                 div.classList.add('archiveDiv');
@@ -162,26 +154,31 @@ deathInput.addEventListener('input', () => {
                 if ((val.kills/val.deaths) === 1){
                     div.classList.add('grey');
                 };
+
+                secondEl.appendChild(div);
                 
-                if (i === totalSetArray[0].games.singleGameArray.length - 1){
+                if (i === totalSetArray[0].games.singleGameArray.length -1){
                     let totalKillDiv = document.createElement('div');
                     let totalDeathDiv = document.createElement('div');
                     let totalRatioDiv = document.createElement('div');
-
                     totalKillDiv.textContent = 'K: ' + totalSetArray[0].totalKills;
                     totalDeathDiv.textContent = 'D: ' + totalSetArray[0].totalDeaths;
                     totalRatioDiv.textContent = '%: ' + (totalSetArray[0].totalKills/totalSetArray[0].totalDeaths).toFixed(2);
-            
                     setTotalsEl.appendChild(totalKillDiv);
                     setTotalsEl.appendChild(totalDeathDiv);
                     setTotalsEl.appendChild(totalRatioDiv);
-
-                }
-
-                secondEl.appendChild(div);
-                secondEl.appendChild(setTotalsEl);
+                    secondEl.appendChild(setTotalsEl);
+                } 
             };
-        } else {         
+
+        } else {  
+            killsLeftEl.textContent = killsLeft;
+            currKillTotal.textContent = 'K: ' + totalKills;
+            currdeathTotal.textContent = 'D: ' + totalDeaths;
+            currRatioTotal.textContent = 'R: ' + ((100-killsLeft)/totalDeaths).toFixed(2);
+            inGameTotalsEl.appendChild(currKillTotal);
+            inGameTotalsEl.appendChild(currdeathTotal);
+            inGameTotalsEl.appendChild(currRatioTotal);
             killInput.value = '';
             deathInput.value = '';
             killInput.focus();
@@ -192,17 +189,18 @@ deathInput.addEventListener('input', () => {
 
 deathInput.addEventListener('keydown', (e) => {
     if (event.key === 'Enter' || event.keyCode === 13) {
-        console.log(killsLeft);
+        killsLeft -= killInput.value;
+        totalDeaths += parseInt(deathInput.value, 10);
+        totalKills += parseInt(killInput.value, 10);
+        singleGameArray.push({ 
+            kills: killInput.value, 
+            deaths: deathInput.value,
+            map: mapDropdown.value
+        }); 
+
         if (killsLeft <= 0) {
             firstEl.classList.add('hide');
             secondEl.classList.remove('hide');
-            let totalKills = killsLeft * -1 + 100;
-            console.log(totalSetArray);
-            console.log(totalDeaths);
-            // for (let i = 0; i < totalSetArray.games; i++) {
-            //     let games = totalSetArray.games[i];
-            //     console.log(games);
-            // }
             totalSetArray.push({ 
                 totalKills: totalKills,
                 totalDeaths: totalDeaths,
@@ -212,7 +210,6 @@ deathInput.addEventListener('keydown', (e) => {
                 let div = document.createElement('div');
                 div.classList.add('archiveDiv');
                 let val = totalSetArray[0].games.singleGameArray[i];
-                console.log(val);
                 let gameNumber = document.createElement('div');
                 let killDiv = document.createElement('div');
                 let deathDiv = document.createElement('div');
@@ -263,30 +260,22 @@ deathInput.addEventListener('keydown', (e) => {
                 secondEl.appendChild(setTotalsEl);
             }
         } else {
-            killsLeft -= killInput.value;
             killsLeftEl.textContent = killsLeft;
-            totalDeaths += parseInt(deathInput.value, 10);
-            currKillTotal.textContent = 'K: ' + (killsLeft * -1 + 100);
+            currKillTotal.textContent = 'K: ' + (100 - killsLeft);
             currdeathTotal.textContent = 'D: ' + totalDeaths;
             currRatioTotal.textContent = '%: ' + ((killsLeft * -1 + 100)/totalDeaths).toFixed(2);
-
             inGameTotalsEl.appendChild(currKillTotal);
             inGameTotalsEl.appendChild(currdeathTotal);
             inGameTotalsEl.appendChild(currRatioTotal);
-            singleGameArray.push({ 
-                kills: killInput.value, 
-                deaths: deathInput.value,
-                map: mapDropdown.value
-            })
-                killInput.value = '';
-                deathInput.value = '';
-                killInput.focus();
+            killInput.value = '';
+            deathInput.value = '';
+            killInput.focus();
         }
         }    
     }
 );
 
-    subSingleScoreBtn.addEventListener('click', () => {
+subSingleScoreBtn.addEventListener('click', () => {
         killsLeft -= killInput.value;
         killsLeftEl.textContent = killsLeft;
         singleGameArray.push({ 

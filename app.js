@@ -208,6 +208,10 @@ deathInput.addEventListener('input', () => {
                     singleArchiveRow.appendChild(dDivArch);
                     singleArchiveRow.appendChild(rDivArch);
                     singleArchiveRow.appendChild(mDivArch);
+
+                    // singleArchiveRow.addEventListener('click', ()=> {
+                    //     // console.log('Howdy bretheren');
+                    // })
                     gameArchiveEl.appendChild(singleArchiveRow);
                 }
                 
@@ -415,6 +419,40 @@ subSingleScoreBtn.addEventListener('click', () => {
             inGameTotalsEl.appendChild(currKillTotal);
             inGameTotalsEl.appendChild(currdeathTotal);
             inGameTotalsEl.appendChild(currRatioTotal);
+            for ( let i = 0; i < singleGameArray.length; i++){
+                if (i === singleGameArray.length - 1) {
+                    const singleArchiveRow = document.createElement('div');
+                    singleArchiveRow.setAttribute('id', `${i + 1}`);
+                    singleArchiveRow.classList.add('singleArchiveRow');
+                    const gameNumArch = document.createElement('div');
+                    const kDivArch = document.createElement('div');
+                    const dDivArch = document.createElement('div');
+                    const rDivArch = document.createElement('div');
+                    const mDivArch = document.createElement('div');
+
+                    gameNumArch.textContent = `${i + 1}.`;
+                    kDivArch.textContent = singleGameArray[i].kills;
+                    dDivArch.textContent = singleGameArray[i].deaths;
+                    rDivArch.textContent = (singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2);
+                    mDivArch.textContent = singleGameArray[i].map;
+
+                    singleArchiveRow.appendChild(gameNumArch);
+                    singleArchiveRow.appendChild(kDivArch);
+                    singleArchiveRow.appendChild(dDivArch);
+                    singleArchiveRow.appendChild(rDivArch);
+                    singleArchiveRow.appendChild(mDivArch);
+
+                    singleArchiveRow.addEventListener('click', ()=> {
+                        // Pop up modal 
+                        // two inputs
+                        // Confirm change / cancel
+                        console.log(`${singleGameArray[i]}`);
+                    })
+                    gameArchiveEl.appendChild(singleArchiveRow);
+                }
+                
+                
+            }
             killInput.value = '';
             deathInput.value = '';
             killInput.focus();

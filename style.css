@@ -11,8 +11,41 @@ body {
 }
 
 select {
-    margin: 10px;
+    border-radius: 10px 10px 0px 0px;
+    border: 2px solid black;
+    margin-top: 10px;
+    min-width: 200px;
     padding: 5px;
+    text-align: center;
+}
+
+.killInput {
+    padding: 6px;
+    border: 5px solid lightgreen;
+}
+
+.kDiv {
+    padding: 6px;
+    border: 5px solid lightgreen;
+    background-color: lightgreen;
+}
+
+.deathInput {
+    padding: 5px;
+    border: 5px solid rgb(242, 100, 100);
+}
+
+.dDiv {
+    padding: 5px;
+    border: 5px solid rgb(242, 100, 100);
+    background-color: rgb(242, 100, 100);
+}
+
+.subSingleScoreBtn {
+    padding: 5px;
+    border-radius: 0px 0px 10px 10px;
+    min-width: 199px;
+
 }
 
 .intro {
@@ -21,9 +54,7 @@ select {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-color: blanchedalmond; */
 }
-
 
 
 .first {
@@ -36,10 +67,8 @@ select {
   }
 
   .inGameTotals {
-    /* margin-bottom: 10px; */
     display: flex;
     justify-content: space-evenly;
-    /* border: 3px solid gold; */
     background-color: burlywood;
     padding: 5px;
     min-width: 190px;
@@ -71,18 +100,23 @@ select {
   display: none;
 }
 
-input {
-  margin: 5px;
+input, .kDiv, .dDiv {
+    
   width: 25px;
   height: 25px;
 }
 
 .inputRow {
-  /* margin: 10px; */
+  border: 2px solid black;
   display: flex;
-  /* border: 5px solid brown; */
   flex-direction: row;
   align-items: center;
+}
+
+input {
+    /* padding: 5px; */
+    /* border-radius: 10px; */
+    min-width: 31px;
 }
 
 .killsLeftTxt {
@@ -116,8 +150,6 @@ input {
 .totals {
     display: flex;
     justify-content: space-evenly;
-    /* padding: 15px; */
-    /* margin-top: 5px; */
     border: 3px solid rgb(139, 132, 12);
     background-color: burlywood;
     border-radius: 0px 0px 15px 15px;
@@ -174,8 +206,18 @@ input {
 
 
 .gameArchive {
+    display: flex;
+    flex-direction: column;
     margin-top: 10px;
-    /* border: 3px solid pink; */
+    border: 3px solid pink;
     padding: 8px;
-    width: 220px;
+    width: 190px;
 }
+
+.singleArchiveRow{
+    display: flex;
+    justify-content: space-between;
+    /* border: 3px solid black; */
+}
+
+

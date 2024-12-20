@@ -187,6 +187,32 @@ deathInput.addEventListener('input', () => {
             inGameTotalsEl.appendChild(currKillTotal);
             inGameTotalsEl.appendChild(currdeathTotal);
             inGameTotalsEl.appendChild(currRatioTotal);
+            for ( let i = 0; i < singleGameArray.length; i++){
+                if (i === singleGameArray.length - 1) {
+                    const singleArchiveRow = document.createElement('div');
+                    singleArchiveRow.classList.add('singleArchiveRow');
+                    const gameNumArch = document.createElement('div');
+                    const kDivArch = document.createElement('div');
+                    const dDivArch = document.createElement('div');
+                    const rDivArch = document.createElement('div');
+                    const mDivArch = document.createElement('div');
+
+                    gameNumArch.textContent = `${i + 1}.`;
+                    kDivArch.textContent = singleGameArray[i].kills;
+                    dDivArch.textContent = singleGameArray[i].deaths;
+                    rDivArch.textContent = (singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2);
+                    mDivArch.textContent = singleGameArray[i].map;
+
+                    singleArchiveRow.appendChild(gameNumArch);
+                    singleArchiveRow.appendChild(kDivArch);
+                    singleArchiveRow.appendChild(dDivArch);
+                    singleArchiveRow.appendChild(rDivArch);
+                    singleArchiveRow.appendChild(mDivArch);
+                    gameArchiveEl.appendChild(singleArchiveRow);
+                }
+                
+                
+            }
             killInput.value = '';
             deathInput.value = '';
             killInput.focus();

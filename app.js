@@ -51,7 +51,7 @@ let mapDropdown = document.createElement('select');
 // INPUT ROW ELEMENTS ---> .inputRowEl ///////////////////
 let kDiv = document.createElement('div');
 kDiv.classList.add('kDiv');
-kDiv.textContent = 'K';
+kDiv.textContent = 'Kills:';
 
 let killInput = document.createElement('input');
 killInput.type = 'number';
@@ -59,7 +59,7 @@ killInput.classList.add('killInput');
 
 let dDiv = document.createElement('div');
 dDiv.classList.add('dDiv');
-dDiv.textContent = 'D';
+dDiv.textContent = 'Deaths:';
 
 
 let deathInput = document.createElement('input');
@@ -421,6 +421,9 @@ subSingleScoreBtn.addEventListener('click', () => {
             inGameTotalsEl.appendChild(currRatioTotal);
             for ( let i = 0; i < singleGameArray.length; i++){
                 if (i === singleGameArray.length - 1) {
+
+
+                    
                     const singleArchiveRow = document.createElement('div');
                     singleArchiveRow.setAttribute('id', `${i + 1}`);
                     singleArchiveRow.classList.add('singleArchiveRow');
@@ -441,18 +444,20 @@ subSingleScoreBtn.addEventListener('click', () => {
                     singleArchiveRow.appendChild(dDivArch);
                     singleArchiveRow.appendChild(rDivArch);
                     singleArchiveRow.appendChild(mDivArch);
-
                     singleArchiveRow.addEventListener('click', ()=> {
-                        // Pop up modal 
-                        // two inputs
-                        // Confirm change / cancel
-                        console.log(`${singleGameArray[i]}`);
+                        console.log(`${singleGameArray[i].kills}`);
+                        let idToFind = `${singleGameArray[i].id}`
+                        let index = singleGameArray.findIndex(obj => obj.id === idToFind);
+                        console.log(index);
+
                     })
+                    
                     gameArchiveEl.appendChild(singleArchiveRow);
                 }
                 
                 
             }
+            
             killInput.value = '';
             deathInput.value = '';
             killInput.focus();

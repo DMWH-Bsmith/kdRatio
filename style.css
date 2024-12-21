@@ -98,8 +98,6 @@ input, .kDiv, .dDiv {
     border-radius: 0px 0px 10px 10px;
 }
 
-
-
 .first {
     background-color: rgb(190, 172, 148);
     margin-top: 20px;
@@ -119,9 +117,6 @@ input, .kDiv, .dDiv {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* margin-left: 35px; */
-    /* margin-right: 40px; */
-    /* padding: 30px; */
   }
 
 .archHeaders {
@@ -140,30 +135,26 @@ input, .kDiv, .dDiv {
 }
 
 
-
-.archiveDiv {
-    display: flex;
-    justify-content: space-evenly;
-    background-color: aquamarine;
-    padding: 8px;
-    width: 320px;
-}
-
 .totals {
     display: flex;
     justify-content: space-evenly;
     border: 3px solid rgb(139, 132, 12);
     background-color: burlywood;
     border-radius: 0px 0px 15px 15px;
-    width: 321px;
-    padding: 10px;
+    width: 350px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
 }
 
 .tip {
+    margin-bottom: -10px;
     text-align: center;
-    width: 320px;
+    width: 350px;
     padding: 8px;
     background-color: burlywood;
+    border: 3px solid rgb(139, 132, 12);
+
     border-radius: 10px 10px 0px 0px;
 }
 
@@ -219,6 +210,11 @@ th {
     padding-bottom: 4px;
 }
 
+/* .archRow {
+    padding: 10px;
+    margin: 20px;
+} */
+
 table {
     text-align: center;
     margin-top: 10px;
@@ -230,6 +226,8 @@ table {
     background-color: gray;
     text-align: center;
 }
+
+
 
 
 

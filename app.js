@@ -150,61 +150,62 @@ deathInput.addEventListener('input', () => {
                 totalDeaths: totalDeaths,
                 games: {singleGameArray}
             })  
-
-
-
-
-
             for ( let i = 0; i < totalSetArray[0].games.singleGameArray.length; i++){
-                let div = document.createElement('div');
-                div.classList.add('archiveDiv');
-                let val = totalSetArray[0].games.singleGameArray[i];
-                console.log(val);
-                let gameNumber = document.createElement('div');
-                let killDiv = document.createElement('div');
-                let deathDiv = document.createElement('div');
-                let ratioDiv = document.createElement('div');
-                let mapDiv = document.createElement('div');
+                if (i === singleGameArray.length - 1) {
+                    const tBody = document.createElement('tbody');
+                    const trEl3 = document.createElement('tr');
 
-                gameNumber.textContent = `${i + 1}.`;
-                killDiv.textContent = val.kills;
-                deathDiv.textContent = val.deaths;
-                ratioDiv.textContent = (val.kills/val.deaths).toFixed(2);
-                mapDiv.textContent = val.map;
+                    const thActGameNum = document.createElement('td');
+                    thActGameNum.classList.add('col');
+                    thActGameNum.textContent = `${i + 1}`;
 
-                
-                div.appendChild(gameNumber);
-                div.appendChild(killDiv);
-                div.appendChild(deathDiv);
-                div.appendChild(ratioDiv);
-                div.appendChild(mapDiv);
+                    const thActKills = document.createElement('td');
+                    thActKills.classList.add('col');
+                    thActKills.textContent = singleGameArray[i].kills;
 
-                if ((val.kills/val.deaths) < 1){
-                    div.classList.add('red');
-                };
+                    const thActDeaths = document.createElement('td');
+                    thActDeaths.classList.add('col');
+                    thActDeaths.textContent = singleGameArray[i].deaths;
 
-                if ((val.kills/val.deaths) > 1){
-                    div.classList.add('green');
-                };
+                    const thActRatio = document.createElement('td');
+                    thActRatio.classList.add('col');
+                    thActRatio.textContent = (singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2);
 
-                if ((val.kills/val.deaths) === 1){
-                    div.classList.add('grey');
-                };
+                    const thActMap = document.createElement('td');
+                    thActMap.classList.add('col');
+                    thActMap.textContent = singleGameArray[i].map;
 
-                secondEl.appendChild(div);
-                
-                if (i === totalSetArray[0].games.singleGameArray.length -1){
-                    let totalKillDiv = document.createElement('div');
-                    let totalDeathDiv = document.createElement('div');
-                    let totalRatioDiv = document.createElement('div');
-                    totalKillDiv.textContent = 'K: ' + totalSetArray[0].totalKills;
-                    totalDeathDiv.textContent = 'D: ' + totalSetArray[0].totalDeaths;
-                    totalRatioDiv.textContent = '%: ' + (totalSetArray[0].totalKills/totalSetArray[0].totalDeaths).toFixed(2);
-                    setTotalsEl.appendChild(totalKillDiv);
-                    setTotalsEl.appendChild(totalDeathDiv);
-                    setTotalsEl.appendChild(totalRatioDiv);
-                    secondEl.appendChild(setTotalsEl);
-                } 
+                    trEl3.appendChild(thActGameNum);
+                    trEl3.appendChild(thActKills);
+                    trEl3.appendChild(thActDeaths);
+                    trEl3.appendChild(thActRatio);
+                    trEl3.appendChild(thActMap);
+                    tBody.appendChild(trEl3);
+
+                    if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) < 1) {
+                        tBody.classList.add('red');
+                    } else if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) > 1) {
+                        tBody.classList.add('green');
+                    } else if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) == 1) {
+                        tBody.classList.add('grey');
+                    }
+
+                    table.appendChild(tBody);
+                    achievedSetEl.appendChild(table);
+                    
+                    if (i === totalSetArray[0].games.singleGameArray.length -1){
+                        let totalKillDiv = document.createElement('div');
+                        let totalDeathDiv = document.createElement('div');
+                        let totalRatioDiv = document.createElement('div');
+                        totalKillDiv.textContent = 'KILLS: ' + totalSetArray[0].totalKills;
+                        totalDeathDiv.textContent = 'DEATHS: ' + totalSetArray[0].totalDeaths;
+                        totalRatioDiv.textContent = '%: ' + (totalSetArray[0].totalKills/totalSetArray[0].totalDeaths).toFixed(2);
+                        setTotalsEl.appendChild(totalKillDiv);
+                        setTotalsEl.appendChild(totalDeathDiv);
+                        setTotalsEl.appendChild(totalRatioDiv);
+                        secondEl.appendChild(setTotalsEl);
+                    };
+                }; 
             };
 
         } else {  
@@ -295,56 +296,63 @@ deathInput.addEventListener('keydown', (e) => {
                 games: {singleGameArray}
             })
             for ( let i = 0; i < totalSetArray[0].games.singleGameArray.length; i++){
-                let div = document.createElement('div');
-                div.classList.add('archiveDiv');
-                let val = totalSetArray[0].games.singleGameArray[i];
-                let gameNumber = document.createElement('div');
-                let killDiv = document.createElement('div');
-                let deathDiv = document.createElement('div');
-                let ratioDiv = document.createElement('div');
-                let mapDiv = document.createElement('div');
+                if (i === singleGameArray.length - 1) {
+                    // const tableArch = document.createElement('table');
+                    const tBody = document.createElement('tbody');
+                    const trEl3 = document.createElement('tr');
 
-                gameNumber.textContent = `${i + 1}.`;
-                killDiv.textContent = val.kills;
-                deathDiv.textContent = val.deaths;
-                ratioDiv.textContent = (val.kills/val.deaths).toFixed(2);
-                mapDiv.textContent = val.map;
+                    const thActGameNum = document.createElement('td');
+                    thActGameNum.classList.add('col');
+                    thActGameNum.textContent = `${i + 1}`;
 
-                
-                div.appendChild(gameNumber);
-                div.appendChild(killDiv);
-                div.appendChild(deathDiv);
-                div.appendChild(ratioDiv);
-                div.appendChild(mapDiv);
+                    const thActKills = document.createElement('td');
+                    thActKills.classList.add('col');
+                    thActKills.textContent = singleGameArray[i].kills;
 
-                if ((val.kills/val.deaths) < 1){
-                    div.classList.add('red');
-                };
+                    const thActDeaths = document.createElement('td');
+                    thActDeaths.classList.add('col');
+                    thActDeaths.textContent = singleGameArray[i].deaths;
 
-                if ((val.kills/val.deaths) > 1){
-                    div.classList.add('green');
-                };
+                    const thActRatio = document.createElement('td');
+                    thActRatio.classList.add('col');
+                    thActRatio.textContent = (singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2);
 
-                if ((val.kills/val.deaths) === 1){
-                    div.classList.add('grey');
-                };
-                
-                if (i === totalSetArray[0].games.singleGameArray.length - 1){
-                    let totalKillDiv = document.createElement('div');
-                    let totalDeathDiv = document.createElement('div');
-                    let totalRatioDiv = document.createElement('div');
+                    const thActMap = document.createElement('td');
+                    thActMap.classList.add('col');
+                    thActMap.textContent = singleGameArray[i].map;
 
-                    totalKillDiv.textContent = 'K: ' + totalSetArray[0].totalKills;
-                    totalDeathDiv.textContent = 'D: ' + totalSetArray[0].totalDeaths;
-                    totalRatioDiv.textContent = '%: ' + (totalSetArray[0].totalKills/totalSetArray[0].totalDeaths).toFixed(2);
-            
-                    setTotalsEl.appendChild(totalKillDiv);
-                    setTotalsEl.appendChild(totalDeathDiv);
-                    setTotalsEl.appendChild(totalRatioDiv);
+                    trEl3.appendChild(thActGameNum);
+                    trEl3.appendChild(thActKills);
+                    trEl3.appendChild(thActDeaths);
+                    trEl3.appendChild(thActRatio);
+                    trEl3.appendChild(thActMap);
+                    tBody.appendChild(trEl3);
 
-                }
+                    if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) < 1) {
+                        tBody.classList.add('red');
+                    } else if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) > 1) {
+                        tBody.classList.add('green');
+                    } else if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) == 1) {
+                        tBody.classList.add('grey');
+                    }
 
-                secondEl.appendChild(div);
+                    table.appendChild(tBody);
+                    achievedSetEl.appendChild(table);
+                    
+                    if (i === totalSetArray[0].games.singleGameArray.length -1){
+                        let totalKillDiv = document.createElement('div');
+                        let totalDeathDiv = document.createElement('div');
+                        let totalRatioDiv = document.createElement('div');
+                        totalKillDiv.textContent = 'KILLS: ' + totalSetArray[0].totalKills;
+                        totalDeathDiv.textContent = 'DEATHS: ' + totalSetArray[0].totalDeaths;
+                        totalRatioDiv.textContent = '%: ' + (totalSetArray[0].totalKills/totalSetArray[0].totalDeaths).toFixed(2);
+                        setTotalsEl.appendChild(totalKillDiv);
+                        setTotalsEl.appendChild(totalDeathDiv);
+                        setTotalsEl.appendChild(totalRatioDiv);
+                        secondEl.appendChild(setTotalsEl);
+                    };
+                }; 
+
                 secondEl.appendChild(setTotalsEl);
             }
         } else {
@@ -436,56 +444,63 @@ subSingleScoreBtn.addEventListener('click', () => {
                 games: {singleGameArray}
             })
             for ( let i = 0; i < totalSetArray[0].games.singleGameArray.length; i++){
-                let div = document.createElement('div');
-                div.classList.add('archiveDiv');
-                let val = totalSetArray[0].games.singleGameArray[i];
-                let gameNumber = document.createElement('div');
-                let killDiv = document.createElement('div');
-                let deathDiv = document.createElement('div');
-                let ratioDiv = document.createElement('div');
-                let mapDiv = document.createElement('div');
+                if (i === singleGameArray.length - 1) {
+                    // const tableArch = document.createElement('table');
+                    const tBody = document.createElement('tbody');
+                    // tBody.classList.add('archRow');
+                    const trEl3 = document.createElement('tr');
 
-                gameNumber.textContent = `${i + 1}.`;
-                killDiv.textContent = val.kills;
-                deathDiv.textContent = val.deaths;
-                ratioDiv.textContent = (val.kills/val.deaths).toFixed(2);
-                mapDiv.textContent = val.map;
+                    const thActGameNum = document.createElement('td');
+                    thActGameNum.classList.add('col');
+                    thActGameNum.textContent = `${i + 1}`;
 
-                
-                div.appendChild(gameNumber);
-                div.appendChild(killDiv);
-                div.appendChild(deathDiv);
-                div.appendChild(ratioDiv);
-                div.appendChild(mapDiv);
+                    const thActKills = document.createElement('td');
+                    thActKills.classList.add('col');
+                    thActKills.textContent = singleGameArray[i].kills;
 
-                if ((val.kills/val.deaths) < 1){
-                    div.classList.add('red');
-                };
+                    const thActDeaths = document.createElement('td');
+                    thActDeaths.classList.add('col');
+                    thActDeaths.textContent = singleGameArray[i].deaths;
 
-                if ((val.kills/val.deaths) > 1){
-                    div.classList.add('green');
-                };
+                    const thActRatio = document.createElement('td');
+                    thActRatio.classList.add('col');
+                    thActRatio.textContent = (singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2);
 
-                if ((val.kills/val.deaths) === 1){
-                    div.classList.add('grey');
-                };
-                
-                if (i === totalSetArray[0].games.singleGameArray.length - 1){
-                    let totalKillDiv = document.createElement('div');
-                    let totalDeathDiv = document.createElement('div');
-                    let totalRatioDiv = document.createElement('div');
+                    const thActMap = document.createElement('td');
+                    thActMap.classList.add('col');
+                    thActMap.textContent = singleGameArray[i].map;
 
-                    totalKillDiv.textContent = 'K: ' + totalSetArray[0].totalKills;
-                    totalDeathDiv.textContent = 'D: ' + totalSetArray[0].totalDeaths;
-                    totalRatioDiv.textContent = '%: ' + (totalSetArray[0].totalKills/totalSetArray[0].totalDeaths).toFixed(2);
-            
-                    setTotalsEl.appendChild(totalKillDiv);
-                    setTotalsEl.appendChild(totalDeathDiv);
-                    setTotalsEl.appendChild(totalRatioDiv);
+                    trEl3.appendChild(thActGameNum);
+                    trEl3.appendChild(thActKills);
+                    trEl3.appendChild(thActDeaths);
+                    trEl3.appendChild(thActRatio);
+                    trEl3.appendChild(thActMap);
+                    tBody.appendChild(trEl3);
 
-                }
+                    if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) < 1) {
+                        tBody.classList.add('red');
+                    } else if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) > 1) {
+                        tBody.classList.add('green');
+                    } else if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) == 1) {
+                        tBody.classList.add('grey');
+                    }
 
-                secondEl.appendChild(div);
+                    table.appendChild(tBody);
+                    achievedSetEl.appendChild(table);
+                    
+                    if (i === totalSetArray[0].games.singleGameArray.length -1){
+                        let totalKillDiv = document.createElement('div');
+                        let totalDeathDiv = document.createElement('div');
+                        let totalRatioDiv = document.createElement('div');
+                        totalKillDiv.textContent = 'KILLS: ' + totalSetArray[0].totalKills;
+                        totalDeathDiv.textContent = 'DEATHS: ' + totalSetArray[0].totalDeaths;
+                        totalRatioDiv.textContent = '%: ' + (totalSetArray[0].totalKills/totalSetArray[0].totalDeaths).toFixed(2);
+                        setTotalsEl.appendChild(totalKillDiv);
+                        setTotalsEl.appendChild(totalDeathDiv);
+                        setTotalsEl.appendChild(totalRatioDiv);
+                        secondEl.appendChild(setTotalsEl);
+                    };
+                }; 
                 secondEl.appendChild(setTotalsEl);
             }
         } else {

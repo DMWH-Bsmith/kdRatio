@@ -101,6 +101,46 @@ killInput.addEventListener('keydown', (e) => {
     }
 })
 
+const container = document.createElement('div');
+container.classList.add('container');
+
+const table = document.createElement('table');
+table.classList.add('table-striped');
+
+const tHead = document.createElement('thead');
+tHead.classList.add('inGameArchHeaders');
+const trEl = document.createElement('tr');
+
+const thGameNum = document.createElement('th');
+thGameNum.classList.add('col');
+thGameNum.textContent = `#`;
+
+const thKills = document.createElement('th');
+thKills.classList.add('col');
+thKills.textContent = 'K';
+
+const thDeaths = document.createElement('th');
+thDeaths.classList.add('col');
+thDeaths.textContent = 'D';
+
+const thRatio = document.createElement('th');
+thRatio.classList.add('col');
+thRatio.textContent = '%';
+
+const thMap = document.createElement('th');
+thMap.classList.add('col');
+thMap.textContent = 'Map';
+
+trEl.appendChild(thGameNum);
+trEl.appendChild(thKills);
+trEl.appendChild(thDeaths);
+trEl.appendChild(thRatio);
+trEl.appendChild(thMap);
+tHead.appendChild(trEl);
+table.appendChild(tHead);
+container.appendChild(table);
+container.appendChild(table);
+gameArchiveEl.appendChild(container);
 
 deathInput.addEventListener('input', () => {
     if (deathInput.value.length > 1) {
@@ -180,39 +220,54 @@ deathInput.addEventListener('input', () => {
             };
 
         } else {  
+            
+            gameArchiveEl.classList.remove('hide');
             killsLeftEl.textContent = killsLeft;
-            currKillTotal.textContent = 'K: ' + totalKills;
-            currdeathTotal.textContent = 'D: ' + totalDeaths;
-            currRatioTotal.textContent = 'R: ' + ((100-killsLeft)/totalDeaths).toFixed(2);
+            currKillTotal.textContent = 'Kills: ' + totalKills;
+            currdeathTotal.textContent = 'Deaths: ' + totalDeaths;
+            currRatioTotal.textContent = '%: ' + ((100-killsLeft)/totalDeaths).toFixed(2);
             inGameTotalsEl.appendChild(currKillTotal);
             inGameTotalsEl.appendChild(currdeathTotal);
             inGameTotalsEl.appendChild(currRatioTotal);
             for ( let i = 0; i < singleGameArray.length; i++){
                 if (i === singleGameArray.length - 1) {
-                    const singleArchiveRow = document.createElement('div');
-                    singleArchiveRow.classList.add('singleArchiveRow');
-                    const gameNumArch = document.createElement('div');
-                    const kDivArch = document.createElement('div');
-                    const dDivArch = document.createElement('div');
-                    const rDivArch = document.createElement('div');
-                    const mDivArch = document.createElement('div');
+                    
+                    const tBody = document.createElement('tbody');
+                    const trEl2 = document.createElement('tr');
 
-                    gameNumArch.textContent = `${i + 1}.`;
-                    kDivArch.textContent = singleGameArray[i].kills;
-                    dDivArch.textContent = singleGameArray[i].deaths;
-                    rDivArch.textContent = (singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2);
-                    mDivArch.textContent = singleGameArray[i].map;
+                    const thActGameNum = document.createElement('td');
+                    thActGameNum.classList.add('col');
+                    thActGameNum.textContent = `${i + 1}`;
 
-                    singleArchiveRow.appendChild(gameNumArch);
-                    singleArchiveRow.appendChild(kDivArch);
-                    singleArchiveRow.appendChild(dDivArch);
-                    singleArchiveRow.appendChild(rDivArch);
-                    singleArchiveRow.appendChild(mDivArch);
+                    const thActKills = document.createElement('td');
+                    thActKills.classList.add('col');
+                    thActKills.textContent = singleGameArray[i].kills;
 
-                    // singleArchiveRow.addEventListener('click', ()=> {
-                    //     // console.log('Howdy bretheren');
-                    // })
-                    gameArchiveEl.appendChild(singleArchiveRow);
+                    const thActDeaths = document.createElement('td');
+                    thActDeaths.classList.add('col');
+                    thActDeaths.textContent = singleGameArray[i].deaths;
+
+                    const thActRatio = document.createElement('td');
+                    thActRatio.classList.add('col');
+                    thActRatio.textContent = (singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2);
+
+                    const thActMap = document.createElement('td');
+                    thActMap.classList.add('col');
+                    thActMap.textContent = singleGameArray[i].map;
+
+                    trEl2.appendChild(thActGameNum);
+                    trEl2.appendChild(thActKills);
+                    trEl2.appendChild(thActDeaths);
+                    trEl2.appendChild(thActRatio);
+                    trEl2.appendChild(thActMap);
+
+                    // if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) < 1) {
+
+                    // }
+
+                    tBody.appendChild(trEl2);
+                    table.appendChild(tBody);
+                    container.appendChild(table);
                 }
                 
                 
@@ -220,6 +275,8 @@ deathInput.addEventListener('input', () => {
             killInput.value = '';
             deathInput.value = '';
             killInput.focus();
+            gameArchiveEl.appendChild(container);
+
         }
     
     }
@@ -298,6 +355,7 @@ deathInput.addEventListener('keydown', (e) => {
                 secondEl.appendChild(setTotalsEl);
             }
         } else {
+            gameArchiveEl.classList.remove('hide');
             console.log(singleGameArray);
             killsLeftEl.textContent = killsLeft;
             currKillTotal.textContent = 'K: ' + (100 - killsLeft);
@@ -308,26 +366,39 @@ deathInput.addEventListener('keydown', (e) => {
             inGameTotalsEl.appendChild(currRatioTotal);
             for ( let i = 0; i < singleGameArray.length; i++){
                 if (i === singleGameArray.length - 1) {
-                    const singleArchiveRow = document.createElement('div');
-                    singleArchiveRow.classList.add('singleArchiveRow');
-                    const gameNumArch = document.createElement('div');
-                    const kDivArch = document.createElement('div');
-                    const dDivArch = document.createElement('div');
-                    const rDivArch = document.createElement('div');
-                    const mDivArch = document.createElement('div');
+                     const tBody = document.createElement('tbody');
+                    const trEl2 = document.createElement('tr');
 
-                    gameNumArch.textContent = `${i + 1}.`;
-                    kDivArch.textContent = singleGameArray[i].kills;
-                    dDivArch.textContent = singleGameArray[i].deaths;
-                    rDivArch.textContent = (singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2);
-                    mDivArch.textContent = singleGameArray[i].map;
+                    const thActGameNum = document.createElement('th');
+                    thActGameNum.classList.add('col');
+                    thActGameNum.textContent = `${i + 1}`;
 
-                    singleArchiveRow.appendChild(gameNumArch);
-                    singleArchiveRow.appendChild(kDivArch);
-                    singleArchiveRow.appendChild(dDivArch);
-                    singleArchiveRow.appendChild(rDivArch);
-                    singleArchiveRow.appendChild(mDivArch);
-                    gameArchiveEl.appendChild(singleArchiveRow);
+                    const thActKills = document.createElement('th');
+                    thActKills.classList.add('col');
+                    thActKills.textContent = singleGameArray[i].kills;
+
+                    const thActDeaths = document.createElement('th');
+                    thActDeaths.classList.add('col');
+                    thActDeaths.textContent = singleGameArray[i].deaths;
+                    
+                    const thActRatio = document.createElement('th');
+                    thActRatio.classList.add('col');
+                    thActRatio.textContent = (singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2);
+
+                    const thActMap = document.createElement('th');
+                    thActMap.classList.add('col');
+                    thActMap.textContent = singleGameArray[i].map;
+
+                    trEl2.appendChild(thActGameNum);
+                    trEl2.appendChild(thActKills);
+                    trEl2.appendChild(thActDeaths);
+                    trEl2.appendChild(thActRatio);
+                    trEl2.appendChild(thActMap);
+
+                    tBody.appendChild(trEl2);
+                    table.appendChild(tBody);
+                    container.appendChild(table);
+                    gameArchiveEl.appendChild(container);
                 }
                 
                 
@@ -412,6 +483,7 @@ subSingleScoreBtn.addEventListener('click', () => {
                 secondEl.appendChild(setTotalsEl);
             }
         } else {
+            gameArchiveEl.classList.remove('hide');
             killsLeftEl.textContent = killsLeft;
             currKillTotal.textContent = 'K: ' + (100 - killsLeft);
             currdeathTotal.textContent = 'D: ' + totalDeaths;
@@ -421,38 +493,39 @@ subSingleScoreBtn.addEventListener('click', () => {
             inGameTotalsEl.appendChild(currRatioTotal);
             for ( let i = 0; i < singleGameArray.length; i++){
                 if (i === singleGameArray.length - 1) {
+                    const tBody = document.createElement('tbody');
+                    const trEl2 = document.createElement('tr');
 
+                    const thActGameNum = document.createElement('th');
+                    thActGameNum.classList.add('col');
+                    thActGameNum.textContent = `${i + 1}`;
 
+                    const thActKills = document.createElement('th');
+                    thActKills.classList.add('col');
+                    thActKills.textContent = singleGameArray[i].kills;
+
+                    const thActDeaths = document.createElement('th');
+                    thActDeaths.classList.add('col');
+                    thActDeaths.textContent = singleGameArray[i].deaths;
                     
-                    const singleArchiveRow = document.createElement('div');
-                    singleArchiveRow.setAttribute('id', `${i + 1}`);
-                    singleArchiveRow.classList.add('singleArchiveRow');
-                    const gameNumArch = document.createElement('div');
-                    const kDivArch = document.createElement('div');
-                    const dDivArch = document.createElement('div');
-                    const rDivArch = document.createElement('div');
-                    const mDivArch = document.createElement('div');
+                    const thActRatio = document.createElement('th');
+                    thActRatio.classList.add('col');
+                    thActRatio.textContent = (singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2);
 
-                    gameNumArch.textContent = `${i + 1}.`;
-                    kDivArch.textContent = singleGameArray[i].kills;
-                    dDivArch.textContent = singleGameArray[i].deaths;
-                    rDivArch.textContent = (singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2);
-                    mDivArch.textContent = singleGameArray[i].map;
+                    const thActMap = document.createElement('th');
+                    thActMap.classList.add('col');
+                    thActMap.textContent = singleGameArray[i].map;
 
-                    singleArchiveRow.appendChild(gameNumArch);
-                    singleArchiveRow.appendChild(kDivArch);
-                    singleArchiveRow.appendChild(dDivArch);
-                    singleArchiveRow.appendChild(rDivArch);
-                    singleArchiveRow.appendChild(mDivArch);
-                    singleArchiveRow.addEventListener('click', ()=> {
-                        console.log(`${singleGameArray[i].kills}`);
-                        let idToFind = `${singleGameArray[i].id}`
-                        let index = singleGameArray.findIndex(obj => obj.id === idToFind);
-                        console.log(index);
+                    trEl2.appendChild(thActGameNum);
+                    trEl2.appendChild(thActKills);
+                    trEl2.appendChild(thActDeaths);
+                    trEl2.appendChild(thActRatio);
+                    trEl2.appendChild(thActMap);
 
-                    })
-                    
-                    gameArchiveEl.appendChild(singleArchiveRow);
+                    tBody.appendChild(trEl2);
+                    table.appendChild(tBody);
+                    container.appendChild(table);
+                    gameArchiveEl.appendChild(container);
                 }
                 
                 
@@ -463,6 +536,47 @@ subSingleScoreBtn.addEventListener('click', () => {
             killInput.focus();
         }
 })
+
+// const container = document.createElement('div');
+// container.classList.add('container');
+
+// const table = document.createElement('table');
+// table.classList.add('table');
+// table.classList.add(' table-striped');
+
+// const tHead = document.createElement('thead');
+// const trEl = document.createElement('tr');
+
+// const thGameNum = document.createElement('th');
+// thGameNum.scope.add('col');
+// thGameNum.textContent = '#';
+
+// const thKills = document.createElement('th');
+// thKills.scope.add('col');
+// thKills.textContent = 'K';
+
+// const thDeaths = document.createElement('th');
+// thDeaths.scope.add('col');
+// thDeaths.textContent = 'D';
+
+// const thRatio = document.createElement('th');
+// thRatio.scope.add('col');
+// thRatio.textContent = '%';
+
+// const thMap = document.createElement('th');
+// thMap.scope.add('col');
+// thMap.textContent = 'Map';
+
+// trEl.appendChild(thGameNum);
+// trEl.appendChild(thKills);
+// trEl.appendChild(thDeaths);
+// trEl.appendChild(thRatio);
+// trEl.appendChild(thMap);
+
+// tHead.appendChild(trEl);
+// table.appendChild(tHead);
+// container.appendChild(table);
+// gameArchiveEl.appendChild(container);
 
 
 

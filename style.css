@@ -27,14 +27,24 @@ body, html {
     justify-content: space-evenly;
     background-color: rgb(165, 159, 150);
     padding: 5px;
-    min-width: 265px;
+    min-width: 300px;
+}
+
+/* Killa Left */
+.top {
+    display: flex;
+    justify-content: center;
+    border: 3px solid grey;
+    background-color: gray;
+    min-width: 300px;
+    padding: 3px;
+    border: 3px solid rgb(80, 79, 79);
 }
 
 select {
-    /* font-size: x-large; */
     border: 3px solid black;
     margin-top: 10px;
-    min-width: 265px;
+    min-width: 300px;
     padding: 5px;
     text-align: center;
 }
@@ -42,14 +52,14 @@ select {
 
 
 .inputRow {
-    border: 2px solid black;
+    border: 3px solid black;
     display: flex;
     flex-direction: row;
     align-items: center;
   }
 
 input, .kDiv, .dDiv {
-    width: 65px;
+    width: 73.5px;
     height: 45px;
 }
 
@@ -68,8 +78,6 @@ input, .kDiv, .dDiv {
 
 }
 
-
-
 .deathInput {
     padding: 5px;
     border: 5px solid rgb(242, 100, 100);
@@ -85,8 +93,9 @@ input, .kDiv, .dDiv {
 
 .subSingleScoreBtn {
     padding: 5px;
-    min-width: 265px;
-
+    min-width: 300px;
+    border: 3px solid black;
+    border-radius: 0px 0px 10px 10px;
 }
 
 
@@ -102,16 +111,6 @@ input, .kDiv, .dDiv {
 
 
 
-.top {
-    display: flex;
-    justify-content: center;
-    border: 3px solid grey;
-    background-color: gray;
-    min-width: 265px;
-    padding: 3px;
-    border: 3px solid rgb(80, 79, 79);
-
-}
 
 .second {
     background-color: rgb(190, 172, 148);
@@ -130,7 +129,7 @@ input, .kDiv, .dDiv {
     justify-content: space-evenly;
     background-color: lightslategray;
     padding: 8px;
-    width: 275px;
+    width: 320px;
     
 }
 
@@ -147,7 +146,7 @@ input, .kDiv, .dDiv {
     justify-content: space-evenly;
     background-color: aquamarine;
     padding: 8px;
-    width: 275px;
+    width: 320px;
 }
 
 .totals {
@@ -156,34 +155,32 @@ input, .kDiv, .dDiv {
     border: 3px solid rgb(139, 132, 12);
     background-color: burlywood;
     border-radius: 0px 0px 15px 15px;
-    width: 275px;
-    padding: 8px;
-
-
+    width: 321px;
+    padding: 10px;
 }
 
 .tip {
     text-align: center;
-    width: 275px;
+    width: 320px;
     padding: 8px;
     background-color: burlywood;
     border-radius: 10px 10px 0px 0px;
 }
 
 .heder1 { 
-    margin-left: 13px;
+    /* margin-left: 13px; */
     background-color: lightslategray;
     padding: 6px;
 }
 
 .heder2 {
-    margin-left: -10px;
+    /* margin-left: -10px; */
     background-color: lightslategray;
     padding: 6px;
 }
 
 .heder3 {
-    margin-left: -5px;
+    /* margin-left: -5px; */
     background-color: lightslategray;
     padding: 6px;
 
@@ -196,7 +193,7 @@ input, .kDiv, .dDiv {
 
 
 .red {
-    background-color: rgb(234, 91, 91);
+    background-color: rgb(238, 125, 125);
 }
 
 .green {
@@ -204,7 +201,7 @@ input, .kDiv, .dDiv {
 }
 
 .grey {
-    background-color: lightgray;
+    background-color: rgb(214, 209, 209);
 }
 
 .gameArchive {
@@ -218,16 +215,19 @@ input, .kDiv, .dDiv {
     display: none;
 }
 
+th {
+    padding: 4px;
+}
 
 table {
-    border: 4px solid grey;
-    border-radius:10px;
+    margin-top: 15px;
+    width: 300px;
+    border: 6px solid grey;
 }
 
 .inGameArchHeaders {
     background-color: gray;
-    /* border: 2px solid grey; */
-
+    text-align: center;
 }
 
 

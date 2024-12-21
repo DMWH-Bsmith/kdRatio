@@ -1,3 +1,4 @@
+/////////////////////////////////////////////////////////////
 // ELEMENTS //////////////////////////////////////////////// 
 const introEl = document.querySelector('.intro'); 
 const firstEl = document.querySelector('.first');
@@ -15,9 +16,8 @@ const currRatioTotal = document.querySelector('.currRatioTotal');
 // BUTTONS //////////////////////////////////////////////// 
 const startBtn = document.querySelector('.startBtn');
 const subSingleScoreBtn = document.createElement('button');
-subSingleScoreBtn.textContent = 'submit';
+subSingleScoreBtn.textContent = 'SUBMIT';
 subSingleScoreBtn.classList.add('subSingleScoreBtn');
-
 //////////////////////////////////////////////////////////// 
 // VALUES /////////////////////////////////////////////////
 let killsLeft = 100;
@@ -33,8 +33,7 @@ mapArray = [' Babylon', 'Derelict', '  Gala  ', 'Hideout', ' Lowtown', 'Nuketown
 singleGameArray = [];
 totalSetArray = [];
 //////////////////////////////////////////////////////////
-
-
+//////////////////////////////////////////////////////////
 startBtn.addEventListener('click', () => {
     introEl.classList.add('hide');
     firstEl.classList.remove('hide');
@@ -42,12 +41,8 @@ startBtn.addEventListener('click', () => {
 })
 
 killsLeftEl.textContent = killsLeft;
-
-
 let mapDropdown = document.createElement('select');
-
-
-
+//////////////////////////////////////////////////////////
 // INPUT ROW ELEMENTS ---> .inputRowEl ///////////////////
 let kDiv = document.createElement('div');
 kDiv.classList.add('kDiv');
@@ -66,14 +61,7 @@ let deathInput = document.createElement('input');
 deathInput.type = 'number';
 deathInput.classList.add('deathInput');
 //////////////////////////////////////////////////////////
-
-
-// ARCHIEVED SET ELEMENTS /////////////////////////////////
-
 //////////////////////////////////////////////////////////
-
-
-
 for (let i = 0; i <= mapArray.length -1; i++) { 
     const option = document.createElement('option'); 
     option.value = mapArray[i]; 
@@ -260,12 +248,17 @@ deathInput.addEventListener('input', () => {
                     trEl2.appendChild(thActDeaths);
                     trEl2.appendChild(thActRatio);
                     trEl2.appendChild(thActMap);
-
-                    // if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) < 1) {
-
-                    // }
-
                     tBody.appendChild(trEl2);
+
+
+                    if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) < 1) {
+                        tBody.classList.add('red');
+                    } else if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) > 1) {
+                        tBody.classList.add('green');
+                    } else if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) == 1) {
+                        tBody.classList.add('grey');
+                    }
+
                     table.appendChild(tBody);
                     container.appendChild(table);
                 }
@@ -369,23 +362,23 @@ deathInput.addEventListener('keydown', (e) => {
                      const tBody = document.createElement('tbody');
                     const trEl2 = document.createElement('tr');
 
-                    const thActGameNum = document.createElement('th');
+                    const thActGameNum = document.createElement('td');
                     thActGameNum.classList.add('col');
                     thActGameNum.textContent = `${i + 1}`;
 
-                    const thActKills = document.createElement('th');
+                    const thActKills = document.createElement('td');
                     thActKills.classList.add('col');
                     thActKills.textContent = singleGameArray[i].kills;
 
-                    const thActDeaths = document.createElement('th');
+                    const thActDeaths = document.createElement('td');
                     thActDeaths.classList.add('col');
                     thActDeaths.textContent = singleGameArray[i].deaths;
                     
-                    const thActRatio = document.createElement('th');
+                    const thActRatio = document.createElement('td');
                     thActRatio.classList.add('col');
                     thActRatio.textContent = (singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2);
 
-                    const thActMap = document.createElement('th');
+                    const thActMap = document.createElement('td');
                     thActMap.classList.add('col');
                     thActMap.textContent = singleGameArray[i].map;
 
@@ -396,7 +389,20 @@ deathInput.addEventListener('keydown', (e) => {
                     trEl2.appendChild(thActMap);
 
                     tBody.appendChild(trEl2);
+
+                    if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) < 1) {
+                        tBody.classList.add('red');
+                    } else if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) > 1) {
+                        tBody.classList.add('green');
+                    } else if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) == 1) {
+                        tBody.classList.add('grey');
+                    }
+
+
+
                     table.appendChild(tBody);
+
+
                     container.appendChild(table);
                     gameArchiveEl.appendChild(container);
                 }
@@ -496,23 +502,23 @@ subSingleScoreBtn.addEventListener('click', () => {
                     const tBody = document.createElement('tbody');
                     const trEl2 = document.createElement('tr');
 
-                    const thActGameNum = document.createElement('th');
+                    const thActGameNum = document.createElement('td');
                     thActGameNum.classList.add('col');
                     thActGameNum.textContent = `${i + 1}`;
 
-                    const thActKills = document.createElement('th');
+                    const thActKills = document.createElement('td');
                     thActKills.classList.add('col');
                     thActKills.textContent = singleGameArray[i].kills;
 
-                    const thActDeaths = document.createElement('th');
+                    const thActDeaths = document.createElement('td');
                     thActDeaths.classList.add('col');
                     thActDeaths.textContent = singleGameArray[i].deaths;
                     
-                    const thActRatio = document.createElement('th');
+                    const thActRatio = document.createElement('td');
                     thActRatio.classList.add('col');
                     thActRatio.textContent = (singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2);
 
-                    const thActMap = document.createElement('th');
+                    const thActMap = document.createElement('td');
                     thActMap.classList.add('col');
                     thActMap.textContent = singleGameArray[i].map;
 
@@ -523,12 +529,19 @@ subSingleScoreBtn.addEventListener('click', () => {
                     trEl2.appendChild(thActMap);
 
                     tBody.appendChild(trEl2);
+
+                    if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) < 1) {
+                        tBody.classList.add('red');
+                    } else if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) > 1) {
+                        tBody.classList.add('green');
+                    } else if ((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2) == 1) {
+                        tBody.classList.add('grey');
+                    }
+                    console.log((singleGameArray[i].kills/singleGameArray[i].deaths).toFixed(2));
                     table.appendChild(tBody);
                     container.appendChild(table);
                     gameArchiveEl.appendChild(container);
                 }
-                
-                
             }
             
             killInput.value = '';
@@ -537,46 +550,6 @@ subSingleScoreBtn.addEventListener('click', () => {
         }
 })
 
-// const container = document.createElement('div');
-// container.classList.add('container');
-
-// const table = document.createElement('table');
-// table.classList.add('table');
-// table.classList.add(' table-striped');
-
-// const tHead = document.createElement('thead');
-// const trEl = document.createElement('tr');
-
-// const thGameNum = document.createElement('th');
-// thGameNum.scope.add('col');
-// thGameNum.textContent = '#';
-
-// const thKills = document.createElement('th');
-// thKills.scope.add('col');
-// thKills.textContent = 'K';
-
-// const thDeaths = document.createElement('th');
-// thDeaths.scope.add('col');
-// thDeaths.textContent = 'D';
-
-// const thRatio = document.createElement('th');
-// thRatio.scope.add('col');
-// thRatio.textContent = '%';
-
-// const thMap = document.createElement('th');
-// thMap.scope.add('col');
-// thMap.textContent = 'Map';
-
-// trEl.appendChild(thGameNum);
-// trEl.appendChild(thKills);
-// trEl.appendChild(thDeaths);
-// trEl.appendChild(thRatio);
-// trEl.appendChild(thMap);
-
-// tHead.appendChild(trEl);
-// table.appendChild(tHead);
-// container.appendChild(table);
-// gameArchiveEl.appendChild(container);
 
 
 

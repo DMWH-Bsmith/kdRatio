@@ -27,7 +27,7 @@ body, html {
     justify-content: space-evenly;
     background-color: rgb(165, 159, 150);
     padding: 5px;
-    min-width: 300px;
+    min-width: 340px;
 }
 
 /* Killa Left */
@@ -36,7 +36,7 @@ body, html {
     justify-content: center;
     border: 3px solid grey;
     background-color: gray;
-    min-width: 300px;
+    min-width: 340px;
     padding: 3px;
     border: 3px solid rgb(80, 79, 79);
 }
@@ -44,7 +44,7 @@ body, html {
 select {
     border: 3px solid black;
     margin-top: 10px;
-    min-width: 300px;
+    min-width: 340px;
     padding: 5px;
     text-align: center;
 }
@@ -59,7 +59,7 @@ select {
   }
 
 input, .kDiv, .dDiv {
-    width: 73.5px;
+    width: 83.5px;
     height: 45px;
 }
 
@@ -93,7 +93,7 @@ input, .kDiv, .dDiv {
 
 .subSingleScoreBtn {
     padding: 5px;
-    min-width: 300px;
+    min-width: 340px;
     border: 3px solid black;
     border-radius: 0px 0px 10px 10px;
 }
@@ -216,13 +216,13 @@ input, .kDiv, .dDiv {
 }
 
 th {
-    padding: 4px;
+    padding-bottom: 4px;
 }
 
 table {
     text-align: center;
-    margin-top: 15px;
-    width: 300px;
+    margin-top: 10px;
+    width: 340px;
     border: 6px solid grey;
 }
 

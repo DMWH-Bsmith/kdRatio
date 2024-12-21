@@ -105,11 +105,11 @@ thGameNum.textContent = `#`;
 
 const thKills = document.createElement('th');
 thKills.classList.add('col');
-thKills.textContent = 'K';
+thKills.textContent = 'Kills';
 
 const thDeaths = document.createElement('th');
 thDeaths.classList.add('col');
-thDeaths.textContent = 'D';
+thDeaths.textContent = 'Deaths';
 
 const thRatio = document.createElement('th');
 thRatio.classList.add('col');

@@ -220,6 +220,7 @@ th {
 }
 
 table {
+    text-align: center;
     margin-top: 15px;
     width: 300px;
     border: 6px solid grey;
@@ -229,6 +230,8 @@ table {
     background-color: gray;
     text-align: center;
 }
+
+
 
 
 

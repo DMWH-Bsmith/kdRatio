@@ -142,7 +142,7 @@ input, .kDiv, .dDiv {
     border: 3px solid rgb(139, 132, 12);
     background-color: burlywood;
     border-radius: 0px 0px 15px 15px;
-    width: 350px;
+    width: 340px;
     padding-top: 15px;
     padding-bottom: 15px;
 
@@ -151,38 +151,17 @@ input, .kDiv, .dDiv {
 .tip {
     margin-bottom: -10px;
     text-align: center;
-    width: 350px;
+    width: 341px;
     padding: 8px;
     background-color: burlywood;
     border: 3px solid rgb(139, 132, 12);
-
     border-radius: 10px 10px 0px 0px;
 }
 
-.heder1 { 
-    /* margin-left: 13px; */
+.heder1, .heder2, .heder3, .heder4 { 
     background-color: lightslategray;
     padding: 6px;
 }
-
-.heder2 {
-    /* margin-left: -10px; */
-    background-color: lightslategray;
-    padding: 6px;
-}
-
-.heder3 {
-    /* margin-left: -5px; */
-    background-color: lightslategray;
-    padding: 6px;
-
-}
-
-.heder4 {
-    background-color: lightslategray;
-    padding: 6px;
-}
-
 
 .red {
     background-color: rgb(238, 125, 125);
@@ -207,14 +186,6 @@ input, .kDiv, .dDiv {
     display: none;
 }
 
-th {
-    padding-bottom: 4px;
-}
-
-/* .archRow {
-    padding: 10px;
-    margin: 20px;
-} */
 
 table {
     text-align: center;

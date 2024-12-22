@@ -119,6 +119,8 @@ container.appendChild(table);
 container.appendChild(table);
 gameArchiveEl.appendChild(container);
 
+
+
 killInput.addEventListener('input', () => {
     if (killInput.value.length > 1) {
         deathInput.focus();

@@ -44,6 +44,10 @@ killsLeftEl.textContent = killsLeft;
 let mapDropdown = document.createElement('select');
 //////////////////////////////////////////////////////////
 // INPUT ROW ELEMENTS ---> .inputRowEl ///////////////////
+let kTotal = document.createElement('div');
+kTotal.classList.add('kTotal');
+
+
 let kDiv = document.createElement('div');
 kDiv.classList.add('kDiv');
 kDiv.textContent = 'Kills:';
@@ -51,6 +55,12 @@ kDiv.textContent = 'Kills:';
 let killInput = document.createElement('input');
 killInput.type = 'number';
 killInput.classList.add('killInput');
+
+let dTotal = document.createElement('div');
+dTotal.classList.add('dTotal');
+
+
+
 
 let dDiv = document.createElement('div');
 dDiv.classList.add('dDiv');
@@ -68,10 +78,19 @@ for (let i = 0; i <= mapArray.length -1; i++) {
     option.textContent = mapArray[i]; 
     mapDropdown.appendChild(option); 
 }
-inputRowEl.appendChild(kDiv);
-inputRowEl.appendChild(killInput);
-inputRowEl.appendChild(dDiv);
-inputRowEl.appendChild(deathInput);
+
+
+
+kTotal.appendChild(kDiv);
+kTotal.appendChild(killInput);
+dTotal.appendChild(dDiv);
+dTotal.appendChild(deathInput);
+inputRowEl.appendChild(kTotal);
+inputRowEl.appendChild(dTotal);
+
+
+
+
 firstEl.appendChild(mapDropdown);
 firstEl.appendChild(inputRowEl);
 firstEl.appendChild(subSingleScoreBtn);

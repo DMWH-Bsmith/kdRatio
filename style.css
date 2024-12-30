@@ -25,18 +25,20 @@ body, html {
     border-radius: 10px 10px 0px 0px;
     display: flex;
     justify-content: space-evenly;
-    background-color: rgb(165, 159, 150);
+    background-color: rgb(102, 170, 179);
     padding: 5px;
-    min-width: 340px;
+    min-width: 400px;
+    font-weight: 700;
 }
 
 /* Killa Left */
 .top {
+    font-weight: 700;
     display: flex;
     justify-content: center;
     border: 3px solid grey;
-    background-color: gray;
-    min-width: 340px;
+    background-color: rgb(199, 196, 196);
+    min-width: 400px;
     padding: 3px;
     border: 3px solid rgb(80, 79, 79);
 }
@@ -44,7 +46,7 @@ body, html {
 select {
     border: 3px solid black;
     margin-top: 10px;
-    min-width: 340px;
+    min-width: 400px;
     padding: 5px;
     text-align: center;
 }
@@ -52,49 +54,70 @@ select {
 
 
 .inputRow {
+    min-width: 400px;
     border: 3px solid black;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    justify-content: space-evenly;
   }
 
-input, .kDiv, .dDiv {
-    width: 83.5px;
-    height: 45px;
+input {
+    width: 60px;
+    font-size: 35px;
+    text-align: center;
+}
+
+.kTotal {
+    display: flex;
+    background-color: lightgreen;
+
+}
+
+.dTotal {
+    display: flex;
+    background-color: rgb(242, 100, 100);
 }
 
 
 .killInput {
-    padding: 6px;
+    border-radius: 10px;
+    font-size: 35px;
+    padding: 3px;
     border: 5px solid lightgreen;
-}
-
-.kDiv {
-    align-items: center;
-    border: 5px solid lightgreen;
-    background-color: lightgreen;
-    text-align: center;
-    font-size: large;
-
 }
 
 .deathInput {
+    border-radius: 10px;
+    font-size: 35px;
     padding: 5px;
     border: 3px solid rgb(242, 100, 100);
 }
 
+.kDiv {
+    width: 135px;
+    align-items: center;
+    border: 5px solid lightgreen;
+    background-color: lightgreen;
+    text-align: center;
+    font-size: 35px;
+    font-weight: bolder;
+
+}
+
+
+
 .dDiv {
-    /* display: flex; */
+    width: 135px;
     align-items: center;
     border: 5px solid rgb(242, 100, 100);
     background-color: rgb(242, 100, 100);
     text-align: center;
-    font-size: large;
+    font-size: 35px;
+    font-weight: bolder;
 }
 
 .subSingleScoreBtn {
     padding: 5px;
-    min-width: 340px;
+    min-width: 400px;
     border: 3px solid black;
     border-radius: 0px 0px 10px 10px;
 }

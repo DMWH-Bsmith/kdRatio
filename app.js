@@ -93,7 +93,7 @@ inputRowEl.appendChild(dTotal);
 
 firstEl.appendChild(mapDropdown);
 firstEl.appendChild(inputRowEl);
-firstEl.appendChild(subSingleScoreBtn);
+// firstEl.appendChild(subSingleScoreBtn);
 firstEl.appendChild(gameArchiveEl);
 
 

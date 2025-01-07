@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./style.css" rel="stylesheet"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>KD Counter</title>
+</head>
+<body>
+    <div class="gameContainer">
+        <div class="intro">
+            <h1>KD Counter</h1>
+            <button class="startBtn">START</button>
+        </div>
+
+        <div class="first hide">
+            <div class="inGameTotals">
+                <div class="currKillTotal">KILLS: 0</div>
+                <div class="currDeathTotal">DEATHS: 0</div>
+                <div class="currRatioTotal">%: 0</div>
+            </div>
+
+            <div class="top">
+                <div class="killsLeftTxt">KILLS LEFT: </div>
+                <div class="killsLeft"></div>
+            </div>
+
+            <div class="inputRow"></div>
+
+            <div class="totalArchive hide">
+                <div class="inGameHeaders">
+                    <div>K</div>
+                    <div>D</div>
+                    <div>%</div>
+                    <div>M</div>
+                </div>
+            <div class="gameArchive hide"></div>
+            </div>
+        </div>
+        <div class="second hide">
+            <div class="tip">100 Kill Sesh Review</div>
+            <div class="achievedSet"></div>
+           <div class="totals"></div>
+           <button class="leaderboard">leaderboard</button>
+        </div>
+    </div>
+    <audio id="audioElement"> <source src="../assets/sounds/click.mp3" type="audio/mpeg"> </audio>
+
+   
+</body>
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+    import { getDatabase, ref } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js';
+    
+    const firebaseConfig = {
+        apiKey: "AIzaSyC_4POpukuO7q2s866B_BAIkDXQH4MMMt0",
+        authDomain: "bops-stats.firebaseapp.com",
+        databaseURL: "https://bops-stats-default-rtdb.firebaseio.com",
+        projectId: "bops-stats",
+        storageBucket: "bops-stats.firebasestorage.app",
+        messagingSenderId: "644014516522",
+        appId: "1:644014516522:web:98144f508a3612e9029653"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const rootRef = ref(database, "/");
+</script>
+<script type="module" src="app.js" defer></script>
+</html>
